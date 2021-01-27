@@ -4,8 +4,8 @@
 name: bili play4
 
 on:
-   schedule:
-       - cron: "0 18 * * 0-7"
+  schedule:
+  - cron: "0 18 * * 0-7"
 
 jobs:
   start:
@@ -35,7 +35,7 @@ jobs:
         && chromedriver --version
     - name: Install resserocr
       run: |
-        && sudo apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev
+        sudo apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev
     - name: run
       run: |
         pip install -r requirement.txt
