@@ -13,14 +13,15 @@ from PIL import Image
 import time
 import smtplib
 from email.mime.text import MIMEText
+from selenium.webdriver.common.touch_actions import TouchActions
 o=0
 while True:
     try:
         k=0
         while True:
-            options = webdriver.ChromeOptions()
-            options.add_argument('--headless')
-            browser = webdriver.Chrome(options=options)
+            opt = webdriver.ChromeOptions()
+            opt.add_experimental_option('w3c',  False)
+            browser = webdriver.Chrome(chrome_options=opt)
             browser.get('https://fangkong.hnu.edu.cn/app/#/login?redirect=%2Fhome')
             browser.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/input').send_keys('202001130910')
             browser.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[2]/input').send_keys('Lxycrash132465')
@@ -32,11 +33,11 @@ while True:
             n=0
             while browser.current_url==hnuurl:
                 browser.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[3]/div/input').send_keys('')
-                browser.implicitly_wait(10)
+                time.sleep(2)
                 browser.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[3]/img').click()
-                browser.implicitly_wait(5)
+                time.sleep(2)
                 browser.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[3]/img').screenshot('test.png')
-                browser.implicitly_wait(5)
+                time.sleep(2)
                 #######验证码识别#######
                 img = Image.open('test.png')
                 Img = img.convert('L')   #灰度化处理
@@ -53,9 +54,14 @@ while True:
                 photo.save('test.jpeg')  #得到二值化处理后图片test.jpg
                 img=Image.open('test.jpeg')
                 a=tesserocr.image_to_text(img)
-                browser.implicitly_wait(5)
+                if len(a)==0:
+                    a='0001'
+                for i in a:
+                    c=ord(i)
+                    if c!=10 and c<48 or c>57:
+                        a='0000'
                 browser.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[3]/div/input').send_keys(a)
-                browser.implicitly_wait(5)
+                time.sleep(3)
                 browser.find_element_by_xpath('/html/body/div[1]/div/div[3]/button').click()
                 time.sleep(2)
                 n=n+1
@@ -106,7 +112,9 @@ while True:
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[2]/div[3]/div[2]/div/input').send_keys('湖南大学')
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[3]/div/div[2]/div[2]/input').send_keys('36.5')
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[3]/div/div[3]/div[2]/input').send_keys('36.5')
-        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/button').click
+        time.sleep(2)
+        doc = browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/button')
+        TouchActions(browser).tap(doc).perform()
         mail_server = "smtp.126.com"
         mail_port = 25
         sender = "linxinyu0110@126.com"
