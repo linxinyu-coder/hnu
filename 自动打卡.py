@@ -20,6 +20,7 @@ while True:
         k=0
         while True:
             opt = webdriver.ChromeOptions()
+            option.add_argument('--headless')
             opt.add_experimental_option('w3c',  False)
             browser = webdriver.Chrome(chrome_options=opt)
             browser.get('https://fangkong.hnu.edu.cn/app/#/login?redirect=%2Fhome')
