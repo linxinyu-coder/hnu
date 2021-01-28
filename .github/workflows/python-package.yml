@@ -3,7 +3,9 @@
 
 name: hnu
 
-on: [push]
+on: 
+  schedule:
+    - cron: " 0 18 * * 0-6"
 
 jobs:
   start:
