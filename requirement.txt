@@ -1,7 +1,2 @@
-requests
 selenium
 tesserocr
-smtplib
-email.mime.text
-selenium.webdriver.common.touch_actions
-PIL
