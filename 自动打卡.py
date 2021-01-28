@@ -99,6 +99,27 @@ while True:
                 break
         ###网页跳转
         time.sleep(1)
+        mail_server = "smtp.126.com"
+        mail_port = 25
+        sender = "linxinyu0110@126.com"
+        sender_password = "ISDUSHZOCHKHIJIJ"  # 授权码
+        receivers = "1078404883@qq.com"
+
+
+        message = MIMEText('登陆成功', 'plain', 'utf-8')
+        message['From'] = sender
+        message['To'] = receivers
+
+        send_time = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+        subject = '登录成功' + send_time 
+        message['Subject'] = subject
+
+
+
+        smtp_obj = smtplib.SMTP()
+        smtp_obj.connect(mail_server, mail_port)
+        smtp_obj.login(sender, sender_password)
+        smtp_obj.sendmail(sender, [receivers], message.as_string())
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[2]/div[2]').click()
         time.sleep(1)
         ####地点点击
