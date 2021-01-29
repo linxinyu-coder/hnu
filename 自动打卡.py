@@ -6,13 +6,6 @@ Created on Thu Jan 28 22:58:40 2021
 @author: lin
 """
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jan 25 16:22:56 2021
-
-@author: lin
-"""
 
 
 import tesserocr
@@ -113,19 +106,22 @@ while True:
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[2]/div[2]').click()
         time.sleep(1)
         ####地点点击
-        for i in range(1,19):
+        for i in range(1,11):
             h='/html/body/div[1]/div/div[5]/div/div[2]/div[1]/ul/li['+str(i)+']'
             browser.find_element_by_xpath(h).click()
             time.sleep(0.5)
         browser.find_element_by_xpath('/html/body/div[1]/div/div[5]/div/div[2]/div[2]/ul/li[1]').click()
         browser.find_element_by_xpath('/html/body/div[1]/div/div[5]/div/div[2]/div[3]/ul/li[3]').click()
         browser.find_element_by_xpath('/html/body/div[1]/div/div[5]/div/div[1]/button[2]').click()
-        time.sleep(1)
-        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[2]/div[3]/div[2]/div/input').send_keys('湖南大学')
-        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[3]/div/div[2]/div[2]/input').send_keys('36.5')
-        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[3]/div/div[3]/div[2]/input').send_keys('36.5')
         time.sleep(2)
-        doc = browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/button')
+        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[2]/div[3]/div[2]/div/input').send_keys('聚泽园')
+        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[3]/div[2]/div[2]').click()
+        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[4]/div[2]/div[1]').click()
+        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[5]/div[2]/div[2]').click()
+        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[6]/div[2]/div[2]').click()
+        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[7]/div[2]/div[2]').click()
+        time.sleep(2)
+        doc = browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/button')
         TouchActions(browser).tap(doc).perform()
         mail_server = "smtp.126.com"
         mail_port = 25
