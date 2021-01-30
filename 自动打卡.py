@@ -17,6 +17,7 @@ from email.mime.text import MIMEText
 from selenium.webdriver.common.touch_actions import TouchActions
 o=0
 while True:
+    eorror=0
     try:
         k=0
         while True:
@@ -29,6 +30,7 @@ while True:
             browser.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[2]/input').send_keys('Lxycrash132465')
             browser.implicitly_wait(2)
             currentPageUrl = browser.current_url
+            eorror=eorror+1
             hnuurl='https://fangkong.hnu.edu.cn/app/#/login?redirect=%2Fhome'
             #网页判断#
             ###暴力识别
@@ -73,6 +75,7 @@ while True:
                 if n>20:
                     browser.close()
                     break
+            eorror=eorror+1
             if browser.current_url!=hnuurl:
                 k=-2
             k=k+1
@@ -102,27 +105,33 @@ while True:
             elif k==-1:
                 break
         ###网页跳转
+        eorror=eorror+1
         time.sleep(1)
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[2]/div[2]').click()
         time.sleep(1)
+        eorror=eorror+1
         ####地点点击
         for i in range(1,11):
             h='/html/body/div[1]/div/div[5]/div/div[2]/div[1]/ul/li['+str(i)+']'
             browser.find_element_by_xpath(h).click()
             time.sleep(0.5)
+        eorror=eorror+1
         browser.find_element_by_xpath('/html/body/div[1]/div/div[5]/div/div[2]/div[2]/ul/li[1]').click()
         browser.find_element_by_xpath('/html/body/div[1]/div/div[5]/div/div[2]/div[3]/ul/li[3]').click()
         browser.find_element_by_xpath('/html/body/div[1]/div/div[5]/div/div[1]/button[2]').click()
         time.sleep(2)
+        eorror=eorror+1
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[2]/div[3]/div[2]/div/input').send_keys('聚泽园')
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[3]/div[2]/div[2]').click()
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[4]/div[2]/div[1]').click()
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[5]/div[2]/div[2]').click()
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[6]/div[2]/div[2]').click()
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[7]/div[2]/div[2]').click()
+        eorror=eorror+1
         time.sleep(2)
         doc = browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/button')
         TouchActions(browser).tap(doc).perform()
+        eorror=eorror+1
         mail_server = "smtp.126.com"
         mail_port = 25
         sender = "linxinyu0110@126.com"
@@ -158,7 +167,7 @@ if o==5:
     receivers = "1078404883@qq.com"
     
     
-    message = MIMEText('错误原因:程序出错', 'plain', 'utf-8')
+    message = MIMEText('错误原因:',eorror,'plain', 'utf-8')
     message['From'] = sender
     message['To'] = receivers
     
