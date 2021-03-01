@@ -122,7 +122,7 @@ while True:
         browser.find_element_by_xpath('/html/body/div[1]/div/div[5]/div/div[1]/button[2]').click()
         time.sleep(2)
         eorror=eorror+1#####################################6
-        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[1]/div[2]/div[3]/div[2]/div/input').send_keys('湖南大学')
+        browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[2]/div[3]/div[2]/div/input').send_keys('湖南大学')
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[3]/div/div[2]/div[2]/input').send_keys('36.5')
         browser.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[1]/div/div/div/div[2]/div[3]/div/div[3]/div[2]/input').send_keys('36.5')
         eorror=eorror+1########################################7
